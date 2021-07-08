@@ -4,7 +4,6 @@ from PIL import ImageColor
 from module.game_module import *
 from module.gui import *
 from module.data import *
-from module.cfg import *
 from threading import Thread
 from math import *
 from win32api import GetKeyState
@@ -70,11 +69,12 @@ def ESP():
                     R, G, B = ESP_R / 255, ESP_G / 255, ESP_B / 255
 
                 if pm.read_int(entity + m_iTeamNum) != pm.read_int((pm.read_int(client + dwLocalPlayer)) + m_iTeamNum):
-                   pm.write_float(glow_manager + entity_glow * 0x38 + 0x4, float(R))
-                   pm.write_float(glow_manager + entity_glow * 0x38 + 0x8, float(G))
-                   pm.write_float(glow_manager + entity_glow * 0x38 + 0xC, float(B))
-                   pm.write_float(glow_manager + entity_glow * 0x38 + 0x10, line)
-                   pm.write_int(glow_manager + entity_glow * 0x38 + 0x24, 1)
+                    pm.write_float(glow_manager + entity_glow * 0x38 + 0x8, float(R))
+                    pm.write_float(glow_manager + entity_glow * 0x38 + 0xC, float(G))
+                    pm.write_float(glow_manager + entity_glow * 0x38 + 0x10, float(B))
+                    pm.write_float(glow_manager + entity_glow * 0x38 + 0x14, line)
+
+                    pm.write_int(glow_manager + entity_glow * 0x38 + 0x28, 1)
 
           time.sleep(0.01)
     except:
